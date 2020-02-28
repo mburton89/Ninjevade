@@ -41,7 +41,9 @@ public class LevelManager : MonoBehaviour{
 	//LEADERBOARD STRING:
 	public string leaderboard = "CgkImaiNpJgYEAIQCA";
 
-	public void Awake(){
+    public enum FirePosition { High, Mid, Low }
+
+    public void Awake(){
 		Instance = this;
 	}
 
@@ -154,40 +156,47 @@ public class LevelManager : MonoBehaviour{
 	}
 
 	private void RandomRespawn(){
-		if (LeftEnemy.IsDead && RightEnemy.IsDead) {
-			int scenarioNumber = random.Next (1, 4);
-			//Debug.Log(scenarioNumber + "Respawn Scenario");
-			if (scenarioNumber == 1) {
-				LeftEnemy.RespawnEnemy ();	
+		if (LeftEnemy.IsDead && RightEnemy.IsDead)
+        {
+			int scenarioNumber = random.Next (1, 6);
+			if (scenarioNumber == 1)
+            {
+				LeftEnemy.RespawnEnemy (FirePosition.Mid);	
 				LeftEnemy.IsDead = false;
-
-				//WIP
 				AchievementDeterminer.twoStarsAreThrown = false;
-				//Debug.Log("twoStarsAreThrown " + AchievementDeterminer.twoStarsAreThrown);
-
-			} else if (scenarioNumber == 2) {
-				RightEnemy.RespawnEnemy ();	
+			}
+            else if (scenarioNumber == 2)
+            {
+				RightEnemy.RespawnEnemy (FirePosition.Mid);	
 				RightEnemy.IsDead = false;
-
-				//WIP
-				AchievementDeterminer.twoStarsAreThrown = false;
-				//Debug.Log("twoStarsAreThrown " + AchievementDeterminer.twoStarsAreThrown);
-
-			} else {
-				LeftEnemy.RespawnEnemy ();
+                AchievementDeterminer.twoStarsAreThrown = false;
+			}
+            else if (scenarioNumber == 3)
+            {
+				LeftEnemy.RespawnEnemy (FirePosition.Mid);
 				LeftEnemy.IsDead = false;
-				RightEnemy.RespawnEnemy ();
+				RightEnemy.RespawnEnemy (FirePosition.Mid);
 				RightEnemy.IsDead = false;
-
-				//WIP
 				AchievementDeterminer.twoStarsAreThrown = true;
-				//Debug.Log("twoStarsAreThrown " + AchievementDeterminer.twoStarsAreThrown); 
-			} 
-		}
-
-		//WIP
+			}
+            else if (scenarioNumber == 4)
+            {
+                LeftEnemy.RespawnEnemy(FirePosition.Low);
+                LeftEnemy.IsDead = false;
+                RightEnemy.RespawnEnemy(FirePosition.High);
+                RightEnemy.IsDead = false;
+                AchievementDeterminer.twoStarsAreThrown = true;
+            }
+            else
+            {
+                LeftEnemy.RespawnEnemy(FirePosition.High);
+                LeftEnemy.IsDead = false;
+                RightEnemy.RespawnEnemy(FirePosition.Low);
+                RightEnemy.IsDead = false;
+                AchievementDeterminer.twoStarsAreThrown = true;
+            }
+        }
 		AchievementDeterminer.playerHasntJumped = true;
-		//Debug.Log("Jump? " + AchievementDeterminer.playerHasntJumped);  
 	}
 
 	private void GameOver(){

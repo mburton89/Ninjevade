@@ -25,7 +25,9 @@ public class AEnemyAi : MonoBehaviour, ITakeDamage{
 	public AudioClip EnemyThrowSound;
 	public AudioClip EnemyHitSound;
 
-	public virtual void Start(){
+    float yPosModifier = 0;
+
+    public virtual void Start(){
 		_controller = GetComponent<CharacterController2D> ();  
 		_direction = _direction;
 		_startPosition = _startPosition;
@@ -41,18 +43,14 @@ public class AEnemyAi : MonoBehaviour, ITakeDamage{
 			return; 
 		}
 
-		if ((_canFireIn -= Time.deltaTime) > 0)
-			return;
+		if ((_canFireIn -= Time.deltaTime) > 0) return;
 
 		if(_controller.Velocity.x == 0){ 
 			var raycast = Physics2D.Raycast(transform.position, _direction, 200, 1 << LayerMask.NameToLayer("Player"));
-			if (!raycast)
-				return;
-			 
+			if (!raycast) return;
 			FireProjectile();
 			RandomizeProjectileSpeedAndFireRate ();
 			_canFireIn = FireRate;
-			//Debug.Log ("  Speed = " + Projectile.Speed + "  Fire Rate = " + FireRate); 
 		}
 	}  
 	
@@ -72,37 +70,37 @@ public class AEnemyAi : MonoBehaviour, ITakeDamage{
 		ResetFireRateAndProjectileSpeed ();   
 	}
 	
-	public void RespawnEnemy(){
+	public void RespawnEnemy(LevelManager.FirePosition firePosition)
+    {
+        if (firePosition == LevelManager.FirePosition.High)
+        {
+            yPosModifier = 1.3f;
+        }
+        else if (firePosition == LevelManager.FirePosition.Low)
+        {
+            yPosModifier = -1f;
+        }
+        else
+        {
+            yPosModifier = 0;
+        }
 
-		//collider2D.enabled = true;
-		_controller.HandleCollisions = true; 
+        _controller.HandleCollisions = true; 
 		transform.position = _startPosition;  
-
-//		_controller.SetHorizontalForce(_direction.x * 10); //initially 16. Initially 11 as of 2/2/2015 and before  
-//		Debug.Log((_direction.x * 10) + "Slide In Speed"); 
-
-		//WIP
 		Vector3 DeviceDimensions = Camera.main.ScreenToWorldPoint( new Vector3((Screen.width), Screen.height, 1));
 		float DeviceWidth = DeviceDimensions.x;  
 		_controller.SetHorizontalForce(_direction.x * (DeviceWidth/1.776f)); //initially 16. Initially 11 as of 2/2/2015 and before  
-		//Debug.Log((_direction.x * (DeviceWidth/1.78f)) + "Slide In Speed");           
-		 
-		//_controller.SetHorizontalForce(_direction.x * (2));                  
-
-
 	}
 	
-	private void FireProjectile(){      
-
+	private void FireProjectile()
+    {      
 		if(Animator != null && gameObject.name.Equals("RightEnemy")){    
 			Animator.SetTrigger("RightEnemyThrow");
 		}
 		if(Animator != null && gameObject.name.Equals("LeftEnemy")){
 			Animator.SetTrigger("LeftEnemyThrow");      
 		}
-		
-		//WIP
-		Vector3 projectileSpawnLocation = new Vector3(transform.position.x + _direction.x, transform.position.y, transform.position.z); 
+        Vector3 projectileSpawnLocation = new Vector3(transform.position.x + _direction.x, transform.position.y + yPosModifier, transform.position.z); 
 		var projectile = (AProjectile)Instantiate (Projectile, projectileSpawnLocation, transform.rotation); //transform.position replaced
 		projectile.Initialize (gameObject, _direction, _controller.Velocity); 
 
