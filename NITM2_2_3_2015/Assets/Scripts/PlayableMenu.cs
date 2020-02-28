@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using GooglePlayGames;
+//using GooglePlayGames;
 using UnityEngine.SocialPlatforms;
 
 public class PlayableMenu : MonoBehaviour{
@@ -77,22 +77,23 @@ public class PlayableMenu : MonoBehaviour{
 		PlayerPrefs.SetInt("hasMadePurchase",1);
 		
 
-		if(Application.loadedLevel == 0){  
-			PlayGamesPlatform.Activate();
-			Social.localUser.Authenticate((bool success) =>{      
+		//if(Application.loadedLevel == 0){  
+		//	PlayGamesPlatform.Activate();
+		//	Social.localUser.Authenticate((bool success) =>{      
 
-				if(success){
-					Debug.Log("Succesful Login");
-				}else{
-					Debug.Log("Login Fail");
-				}
-			});
-			Player = FindObjectOfType<PlayerAi> ();	//Need to put at begining?	  
+		//		if(success){
+		//			Debug.Log("Succesful Login");
+		//		}else{
+		//			Debug.Log("Login Fail");
+		//		}
+		//	});
+		//	Player = FindObjectOfType<PlayerAi> ();	//Need to put at begining?	  
 
    
-		}
+		//}
 
-		if(Application.loadedLevel == 4){
+		if(Application.loadedLevel == 4 || Application.loadedLevel == 0)
+        {
 			Player = FindObjectOfType<PlayerAi> ();
 			Debug.Log("Player Character: " + Player.gameObject.name);
 		}
@@ -273,33 +274,33 @@ public class PlayableMenu : MonoBehaviour{
 
 		else if(Input.GetKeyDown(KeyCode.Alpha1)){
 
-			if(BGSoundObject.audio.clip.name.Equals("Wind")){
-				BGSoundObject.audio.clip = (AudioClip)Resources.Load("NightSound", typeof(AudioClip)) as AudioClip;
-				BGSoundObject.audio.Play();  
+			if(BGSoundObject.GetComponent<AudioSource>().clip.name.Equals("Wind")){
+				BGSoundObject.GetComponent<AudioSource>().clip = (AudioClip)Resources.Load("NightSound", typeof(AudioClip)) as AudioClip;
+				BGSoundObject.GetComponent<AudioSource>().Play();  
 
 				determineThemeLockedStatus();
 
 			}
 
-			else if(BGSoundObject.audio.clip.name.Equals("NightSound")){
-				BGSoundObject.audio.clip = (AudioClip)Resources.Load("RainSound", typeof(AudioClip)) as AudioClip;
-				BGSoundObject.audio.Play();         
+			else if(BGSoundObject.GetComponent<AudioSource>().clip.name.Equals("NightSound")){
+				BGSoundObject.GetComponent<AudioSource>().clip = (AudioClip)Resources.Load("RainSound", typeof(AudioClip)) as AudioClip;
+				BGSoundObject.GetComponent<AudioSource>().Play();         
 
 				determineThemeLockedStatus();
 
 			}
 
-			else if(BGSoundObject.audio.clip.name.Equals("RainSound")){
-				BGSoundObject.audio.clip = (AudioClip)Resources.Load("SpaceSound", typeof(AudioClip)) as AudioClip;
-				BGSoundObject.audio.Play();  
+			else if(BGSoundObject.GetComponent<AudioSource>().clip.name.Equals("RainSound")){
+				BGSoundObject.GetComponent<AudioSource>().clip = (AudioClip)Resources.Load("SpaceSound", typeof(AudioClip)) as AudioClip;
+				BGSoundObject.GetComponent<AudioSource>().Play();  
 
 				determineThemeLockedStatus();
 
 			}
 
-			else if(BGSoundObject.audio.clip.name.Equals("SpaceSound")){
-				BGSoundObject.audio.clip = (AudioClip)Resources.Load("Wind", typeof(AudioClip)) as AudioClip;
-				BGSoundObject.audio.Play();     
+			else if(BGSoundObject.GetComponent<AudioSource>().clip.name.Equals("SpaceSound")){
+				BGSoundObject.GetComponent<AudioSource>().clip = (AudioClip)Resources.Load("Wind", typeof(AudioClip)) as AudioClip;
+				BGSoundObject.GetComponent<AudioSource>().Play();     
 
 				ThemeLockedStatus.GetComponent<SpriteRenderer>().sprite = (Sprite)Resources.Load ("BLANKButton", typeof(Sprite)) as Sprite;
 				determineLowerGrassStatus();
@@ -444,33 +445,33 @@ public class PlayableMenu : MonoBehaviour{
 	}
 	
 	private void ToggleThemeSoundToRight(){
-		if(BGSoundObject.audio.clip.name.Equals("Wind")){
-			BGSoundObject.audio.clip = (AudioClip)Resources.Load("NightSound", typeof(AudioClip)) as AudioClip;
-			BGSoundObject.audio.Play();  
+		if(BGSoundObject.GetComponent<AudioSource>().clip.name.Equals("Wind")){
+			BGSoundObject.GetComponent<AudioSource>().clip = (AudioClip)Resources.Load("NightSound", typeof(AudioClip)) as AudioClip;
+			BGSoundObject.GetComponent<AudioSource>().Play();  
 
 			determineThemeLockedStatus();
 
 		}
 			
-		else if(BGSoundObject.audio.clip.name.Equals("NightSound")){
-			BGSoundObject.audio.clip = (AudioClip)Resources.Load("RainSound", typeof(AudioClip)) as AudioClip;
-			BGSoundObject.audio.Play();  
+		else if(BGSoundObject.GetComponent<AudioSource>().clip.name.Equals("NightSound")){
+			BGSoundObject.GetComponent<AudioSource>().clip = (AudioClip)Resources.Load("RainSound", typeof(AudioClip)) as AudioClip;
+			BGSoundObject.GetComponent<AudioSource>().Play();  
 
 			determineThemeLockedStatus();
 
 		}
 			
-		else if(BGSoundObject.audio.clip.name.Equals("RainSound")){
-			BGSoundObject.audio.clip = (AudioClip)Resources.Load("SpaceSound", typeof(AudioClip)) as AudioClip;
-			BGSoundObject.audio.Play(); 
+		else if(BGSoundObject.GetComponent<AudioSource>().clip.name.Equals("RainSound")){
+			BGSoundObject.GetComponent<AudioSource>().clip = (AudioClip)Resources.Load("SpaceSound", typeof(AudioClip)) as AudioClip;
+			BGSoundObject.GetComponent<AudioSource>().Play(); 
 
 			determineThemeLockedStatus();
 
 		}
 			
-		else if(BGSoundObject.audio.clip.name.Equals("SpaceSound")){
-			BGSoundObject.audio.clip = (AudioClip)Resources.Load("Wind", typeof(AudioClip)) as AudioClip;
-			BGSoundObject.audio.Play();   
+		else if(BGSoundObject.GetComponent<AudioSource>().clip.name.Equals("SpaceSound")){
+			BGSoundObject.GetComponent<AudioSource>().clip = (AudioClip)Resources.Load("Wind", typeof(AudioClip)) as AudioClip;
+			BGSoundObject.GetComponent<AudioSource>().Play();   
 
 			ThemeLockedStatus.GetComponent<SpriteRenderer>().sprite = (Sprite)Resources.Load ("BLANKButton", typeof(Sprite)) as Sprite;
 			determineLowerGrassStatus();
@@ -479,34 +480,34 @@ public class PlayableMenu : MonoBehaviour{
 	}
 
 	private void ToggleThemeSoundToLeft(){
-		if(BGSoundObject.audio.clip.name.Equals("Wind")){
-			BGSoundObject.audio.clip = (AudioClip)Resources.Load("SpaceSound", typeof(AudioClip)) as AudioClip;
-			BGSoundObject.audio.Play(); 
+		if(BGSoundObject.GetComponent<AudioSource>().clip.name.Equals("Wind")){
+			BGSoundObject.GetComponent<AudioSource>().clip = (AudioClip)Resources.Load("SpaceSound", typeof(AudioClip)) as AudioClip;
+			BGSoundObject.GetComponent<AudioSource>().Play(); 
 
 			determineThemeLockedStatus();        
 
 		}
 		
-		else if(BGSoundObject.audio.clip.name.Equals("NightSound")){
-			BGSoundObject.audio.clip = (AudioClip)Resources.Load("Wind", typeof(AudioClip)) as AudioClip;
-			BGSoundObject.audio.Play(); 
+		else if(BGSoundObject.GetComponent<AudioSource>().clip.name.Equals("NightSound")){
+			BGSoundObject.GetComponent<AudioSource>().clip = (AudioClip)Resources.Load("Wind", typeof(AudioClip)) as AudioClip;
+			BGSoundObject.GetComponent<AudioSource>().Play(); 
 
 			ThemeLockedStatus.GetComponent<SpriteRenderer>().sprite = (Sprite)Resources.Load ("BLANKButton", typeof(Sprite)) as Sprite;
 			determineLowerGrassStatus();
 			
 		}
 		
-		else if(BGSoundObject.audio.clip.name.Equals("RainSound")){
-			BGSoundObject.audio.clip = (AudioClip)Resources.Load("NightSound", typeof(AudioClip)) as AudioClip;
-			BGSoundObject.audio.Play(); 
+		else if(BGSoundObject.GetComponent<AudioSource>().clip.name.Equals("RainSound")){
+			BGSoundObject.GetComponent<AudioSource>().clip = (AudioClip)Resources.Load("NightSound", typeof(AudioClip)) as AudioClip;
+			BGSoundObject.GetComponent<AudioSource>().Play(); 
 
 			determineThemeLockedStatus();
 
 		}
 		
-		else if(BGSoundObject.audio.clip.name.Equals("SpaceSound")){
-			BGSoundObject.audio.clip = (AudioClip)Resources.Load("RainSound", typeof(AudioClip)) as AudioClip;
-			BGSoundObject.audio.Play();   
+		else if(BGSoundObject.GetComponent<AudioSource>().clip.name.Equals("SpaceSound")){
+			BGSoundObject.GetComponent<AudioSource>().clip = (AudioClip)Resources.Load("RainSound", typeof(AudioClip)) as AudioClip;
+			BGSoundObject.GetComponent<AudioSource>().Play();   
 
 			determineThemeLockedStatus();
 

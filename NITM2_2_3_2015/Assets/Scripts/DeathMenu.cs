@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using GooglePlayGames;
+//using GooglePlayGames;
 using UnityEngine.SocialPlatforms;
 
 public class DeathMenu : MonoBehaviour{
@@ -151,12 +151,12 @@ public class DeathMenu : MonoBehaviour{
 			//if((touchPosition.x < -7.5 || touchPosition.x > 7.5) && touchPosition.y < 8){
 				if(touchPosition.y < 16.9){
 
-					if(GameManager.Instance.Points < 5){
-						((PlayGamesPlatform) Social.Active).IncrementAchievement(
-							determinedAchievement, 1, (bool success) =>{ 
-							//nuffin 
-						}); 
-					}
+					//if(GameManager.Instance.Points < 5){
+					//	((PlayGamesPlatform) Social.Active).IncrementAchievement(
+					//		determinedAchievement, 1, (bool success) =>{ 
+					//		nuffin 
+					//	}); 
+					//}
 
 					if(PlayerPrefs.GetInt("isFirstDeath") == 0){
 						//ACHIEVEMENTS BUTTON
