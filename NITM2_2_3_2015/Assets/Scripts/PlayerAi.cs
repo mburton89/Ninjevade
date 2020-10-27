@@ -61,7 +61,7 @@ public class PlayerAi: MonoBehaviour, ITakeDamage{
 
 		if(!IsDead && Time.timeScale != 0){   
 			HandleUserTouches();  
-			//HandleInput(); //FOR KEYBOARD                 
+			HandleInput(); //FOR KEYBOARD                 
 		} 
 			
 

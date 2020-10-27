@@ -158,7 +158,7 @@ public class LevelManager : MonoBehaviour{
 	private void RandomRespawn(){
 		if (LeftEnemy.IsDead && RightEnemy.IsDead)
         {
-			int scenarioNumber = random.Next (1, 6);
+			int scenarioNumber = random.Next (1, 4);
 			if (scenarioNumber == 1)
             {
 				LeftEnemy.RespawnEnemy (FirePosition.Mid);	
@@ -179,22 +179,6 @@ public class LevelManager : MonoBehaviour{
 				RightEnemy.IsDead = false;
 				AchievementDeterminer.twoStarsAreThrown = true;
 			}
-            else if (scenarioNumber == 4)
-            {
-                LeftEnemy.RespawnEnemy(FirePosition.Low);
-                LeftEnemy.IsDead = false;
-                RightEnemy.RespawnEnemy(FirePosition.High);
-                RightEnemy.IsDead = false;
-                AchievementDeterminer.twoStarsAreThrown = true;
-            }
-            else
-            {
-                LeftEnemy.RespawnEnemy(FirePosition.High);
-                LeftEnemy.IsDead = false;
-                RightEnemy.RespawnEnemy(FirePosition.Low);
-                RightEnemy.IsDead = false;
-                AchievementDeterminer.twoStarsAreThrown = true;
-            }
         }
 		AchievementDeterminer.playerHasntJumped = true;
 	}
@@ -210,60 +194,60 @@ public class LevelManager : MonoBehaviour{
 		//PlayerPrefs.SetInt("currentHighScore", 0);               
 
 		//Unlock Achievements
-		if (GameManager.Instance.Points >= 5){  
-			Social.ReportProgress(yellowBelt, 100.0f,(bool success) => {
-			});
-		}
+		//if (GameManager.Instance.Points >= 5){  
+		//	Social.ReportProgress(yellowBelt, 100.0f,(bool success) => {
+		//	});
+		//}
 		
-		if (GameManager.Instance.Points >= 10){
-			Social.ReportProgress(orangeBelt, 100.0f,(bool success) => {
-			});
-		}
+		//if (GameManager.Instance.Points >= 10){
+		//	Social.ReportProgress(orangeBelt, 100.0f,(bool success) => {
+		//	});
+		//}
 		
-		if (GameManager.Instance.Points >= 20){
-			Social.ReportProgress(greenBelt, 100.0f,(bool success) => {
-			});
-		}
+		//if (GameManager.Instance.Points >= 20){
+		//	Social.ReportProgress(greenBelt, 100.0f,(bool success) => {
+		//	});
+		//}
 		
-		if (GameManager.Instance.Points >= 40){
-			Social.ReportProgress(blueBelt, 100.0f,(bool success) => {
-			});
-		}
+		//if (GameManager.Instance.Points >= 40){
+		//	Social.ReportProgress(blueBelt, 100.0f,(bool success) => {
+		//	});
+		//}
 		
-		if (GameManager.Instance.Points >= 70){
-			Social.ReportProgress(purpleBelt, 100.0f,(bool success) => {
-			});
-		}
+		//if (GameManager.Instance.Points >= 70){
+		//	Social.ReportProgress(purpleBelt, 100.0f,(bool success) => {
+		//	});
+		//}
 
-		if (GameManager.Instance.Points >= 100){
-			Social.ReportProgress(brownBelt, 100.0f,(bool success) => {
-			});
-		}
+		//if (GameManager.Instance.Points >= 100){
+		//	Social.ReportProgress(brownBelt, 100.0f,(bool success) => {
+		//	});
+		//}
 
-		if (GameManager.Instance.Points >= 140){
-			Social.ReportProgress(redBelt, 100.0f,(bool success) => {
-			});
-		}
+		//if (GameManager.Instance.Points >= 140){
+		//	Social.ReportProgress(redBelt, 100.0f,(bool success) => {
+		//	});
+		//}
 
-		if (GameManager.Instance.Points >= 200){
-			Social.ReportProgress(blackBelt, 100.0f,(bool success) => {
-			});
-		}
+		//if (GameManager.Instance.Points >= 200){
+		//	Social.ReportProgress(blackBelt, 100.0f,(bool success) => {
+		//	});
+		//}
 
-		//Handle High Score and post to leaderboard
+		////Handle High Score and post to leaderboard
 
-		//RESET TO 1
-		//PlayerPrefs.SetInt("currentHighScore", 1);  
+		////RESET TO 1
+		////PlayerPrefs.SetInt("currentHighScore", 1);  
 
 
-		if (GameManager.Instance.Points > PlayerPrefs.GetInt ("currentHighScore")) {
-			PlayerPrefs.SetInt("currentHighScore", GameManager.Instance.Points);
-		}
+		//if (GameManager.Instance.Points > PlayerPrefs.GetInt ("currentHighScore")) {
+		//	PlayerPrefs.SetInt("currentHighScore", GameManager.Instance.Points);
+		//}
 
-		//Reports obtained score to High Score leaderboard.
-		Social.ReportScore(GameManager.Instance.Points, leaderboard, (bool success) => {
+		////Reports obtained score to High Score leaderboard.
+		////Social.ReportScore(GameManager.Instance.Points, leaderboard, (bool success) => {
 			
-		});
+		////});
 
 		Application.LoadLevel (2);
 	}

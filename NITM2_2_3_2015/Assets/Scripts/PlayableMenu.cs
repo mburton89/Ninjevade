@@ -31,40 +31,8 @@ public class PlayableMenu : MonoBehaviour{
 	public GameObject LowerGrassMenu;
 	public GameObject LowerGrassCover;  
 
-	void OnGUI(){                                       //initially 250
-//		if (GUI.Button (new Rect (Screen.width / 2.5f, Screen.height - 250  , Screen.width / 5, Screen.height / 10), "START", EmptyTexture)){ 
-//			Application.LoadLevel(3); 
-//
-//			//WIP
-//			PlayerPrefs.SetInt("isFirstDeath", 1);    
-//		}                             
-
-		//CLOCK
-//		if (GUI.Button (new Rect (Screen.width / 2.5f, Screen.height - 400  , Screen.width / 5, Screen.height / 10), System.DateTime.UtcNow.ToString("HH:mm dd MMMM, yyyy"), EmptyTexture)){ 
-//		
-//		}
-
-//		if (GUI.Button (new Rect (Screen.width / 2.5f, Screen.height / 8 , Screen.width / 5, Screen.height / 10), "START", EmptyTexture)){ 
-//			Application.LoadLevel(1);		
-//		}
-//
-//		if (PlayerPrefs.GetInt ("currentHighScore") > 10) {
-//			if (GUI.Button (new Rect (Screen.width / 2.5f, Screen.height / 6 , Screen.width / 5, Screen.height / 10), "TOP HAT", EmptyTexture)){ 
-//				Application.LoadLevel(1);		
-//			}
-//		}
-
-		//FOR LEADERBOARDS
-//		if (GUI.Button (new Rect (Screen.width / 2.5f, Screen.height - 180, Screen.width / 5, Screen.height / 10), "LEADERBOARDS", EmptyTexture)) {
-//			Social.ShowLeaderboardUI();
-//		}
-
-//		if (GUI.Button (new Rect (Screen.width / 2.5f, Screen.height / 2, Screen.width / 5, Screen.height / 10), "HOW TO PLAY", EmptyTexture)) {
-//			Application.LoadLevel(3);		
-//		}
-	}
-		
-	public void Awake(){  
+	public void Awake()
+    {  
 		Instance = this;            
 	}
 	
@@ -200,36 +168,9 @@ public class PlayableMenu : MonoBehaviour{
 	//WIP
 	private void HandleKeyboard(){
 
-		if(Input.GetKeyDown(KeyCode.Alpha8)){    
-				
-//			if(Monk.activeInHierarchy){
-//				Monk.SetActive(false);
-//				Wizard.SetActive(true);
-//				CharacterText.GetComponent<SpriteRenderer>().sprite = (Sprite)Resources.Load ("WizardText", typeof(Sprite)) as Sprite;
-//			}
-//				
-//			else if(Wizard.activeInHierarchy){
-//				Wizard.SetActive(false);  
-//				Gentleman.SetActive(true);
-//				CharacterText.GetComponent<SpriteRenderer>().sprite = (Sprite)Resources.Load ("GentlemanText", typeof(Sprite)) as Sprite;
-//			}
-//
-//			else if(Gentleman.activeInHierarchy){     
-//				Gentleman.SetActive(false);          
-//				Robo.SetActive(true);
-//				CharacterText.GetComponent<SpriteRenderer>().sprite = (Sprite)Resources.Load ("RoboText", typeof(Sprite)) as Sprite;
-//			}
-//
-//			else if(Robo.activeInHierarchy){  
-//				Robo.SetActive(false);                          
-//				Monk.SetActive(true);
-//				CharacterText.GetComponent<SpriteRenderer>().sprite = (Sprite)Resources.Load ("MonkText", typeof(Sprite)) as Sprite;
-//			}
-
-			
-			//WIP
-
-			if(Player.gameObject.name.Equals("Player")){
+		if(Input.GetKeyDown(KeyCode.Alpha8))
+        {    
+				if(Player.gameObject.name.Equals("Player")){
 				Player.gameObject.SetActive(false);
 				Wizard.SetActive(true);
 				Player = FindObjectOfType<PlayerAi> (); 
@@ -312,31 +253,8 @@ public class PlayableMenu : MonoBehaviour{
 		}
 	}
 
-	private void ToggleCharacterToRight(){      
-//		if(Monk.activeInHierarchy){
-//			Monk.SetActive(false);
-//			Wizard.SetActive(true);
-//			CharacterText.GetComponent<SpriteRenderer>().sprite = (Sprite)Resources.Load ("WizardText", typeof(Sprite)) as Sprite;
-//		}
-//		
-//		else if(Wizard.activeInHierarchy){
-//			Wizard.SetActive(false);  
-//			Gentleman.SetActive(true);
-//			CharacterText.GetComponent<SpriteRenderer>().sprite = (Sprite)Resources.Load ("GentlemanText", typeof(Sprite)) as Sprite;
-//		}
-//		
-//		else if(Gentleman.activeInHierarchy){     
-//			Gentleman.SetActive(false);
-//			Robo.SetActive(true);
-//			CharacterText.GetComponent<SpriteRenderer>().sprite = (Sprite)Resources.Load ("RoboText", typeof(Sprite)) as Sprite;
-//		}
-//		
-//		else if(Robo.activeInHierarchy){  
-//			Robo.SetActive(false);
-//			Monk.SetActive(true);
-//			CharacterText.GetComponent<SpriteRenderer>().sprite = (Sprite)Resources.Load ("MonkText", typeof(Sprite)) as Sprite;
-//		}
-
+	private void ToggleCharacterToRight()
+    {      
 		if(Player.gameObject.name.Equals("Player")){
 			Player.gameObject.SetActive(false);
 			Wizard.SetActive(true);
@@ -379,30 +297,6 @@ public class PlayableMenu : MonoBehaviour{
 	}
 	
 	private void ToggleCharacterToLeft(){  
-//		if(Monk.activeInHierarchy){
-//			Monk.SetActive(false);
-//			Robo.SetActive(true);
-//			CharacterText.GetComponent<SpriteRenderer>().sprite = (Sprite)Resources.Load ("RoboText", typeof(Sprite)) as Sprite;
-//		}
-//		
-//		else if(Wizard.activeInHierarchy){  
-//			Wizard.SetActive(false);  
-//			Monk.SetActive(true);  
-//			CharacterText.GetComponent<SpriteRenderer>().sprite = (Sprite)Resources.Load ("MonkText", typeof(Sprite)) as Sprite;
-//		}
-//		
-//		else if(Gentleman.activeInHierarchy){     
-//			Gentleman.SetActive(false);
-//			Wizard.SetActive(true);
-//			CharacterText.GetComponent<SpriteRenderer>().sprite = (Sprite)Resources.Load ("WizardText", typeof(Sprite)) as Sprite;
-//		}
-//		
-//		else if(Robo.activeInHierarchy){  
-//			Robo.SetActive(false);
-//			Gentleman.SetActive(true);
-//			CharacterText.GetComponent<SpriteRenderer>().sprite = (Sprite)Resources.Load ("GentlemanText", typeof(Sprite)) as Sprite;
-//		}
-
 		if(Player.gameObject.name.Equals("Player")){
 			Player.gameObject.SetActive(false);
 			Robo.SetActive(true);

@@ -22,9 +22,6 @@ public class AEnemyAi : MonoBehaviour, ITakeDamage{
 	private float InitialFireRate = 4; 
 	private float _canFireIn;
 
-	public AudioClip EnemyThrowSound;
-	public AudioClip EnemyHitSound;
-
     float yPosModifier = 0;
 
     public virtual void Start(){
@@ -36,7 +33,7 @@ public class AEnemyAi : MonoBehaviour, ITakeDamage{
 	public void Update(){
 
 		if((_controller.State.IsCollidingLeft) || (_controller.State.IsCollidingRight)){
-			_controller.SetHorizontalForce (0);
+            _controller.SetHorizontalForce (0);
 			FireProjectile();
 			RandomizeProjectileSpeedAndFireRate ();
 			_canFireIn = FireRate;
@@ -60,8 +57,9 @@ public class AEnemyAi : MonoBehaviour, ITakeDamage{
 
 	public void Kill(){
 
-		if(transform.position.y > 0){
-			AudioSource.PlayClipAtPoint(EnemyHitSound, transform.position);
+		if(transform.position.y > 0)
+        {
+            AudioManager.Instance.PlayEnemyHitSound();
 		}
 
 		_controller.HandleCollisions = false;
@@ -72,18 +70,18 @@ public class AEnemyAi : MonoBehaviour, ITakeDamage{
 	
 	public void RespawnEnemy(LevelManager.FirePosition firePosition)
     {
-        if (firePosition == LevelManager.FirePosition.High)
-        {
-            yPosModifier = 1.3f;
-        }
-        else if (firePosition == LevelManager.FirePosition.Low)
-        {
-            yPosModifier = -1f;
-        }
-        else
-        {
+        //if (firePosition == LevelManager.FirePosition.High)
+        //{
+        //    yPosModifier = 1.3f;
+        //}
+        //else if (firePosition == LevelManager.FirePosition.Low)
+        //{
+        //    yPosModifier = -1f;
+        //}
+        //else
+        //{
             yPosModifier = 0;
-        }
+        //}
 
         _controller.HandleCollisions = true; 
 		transform.position = _startPosition;  
@@ -104,7 +102,7 @@ public class AEnemyAi : MonoBehaviour, ITakeDamage{
 		var projectile = (AProjectile)Instantiate (Projectile, projectileSpawnLocation, transform.rotation); //transform.position replaced
 		projectile.Initialize (gameObject, _direction, _controller.Velocity); 
 
-		AudioSource.PlayClipAtPoint(EnemyThrowSound, transform.position);        
+        AudioManager.Instance.PlayEnemyThrowSound();
 	}
 
 	private void ResetFireRateAndProjectileSpeed(){
